@@ -3,7 +3,7 @@ import Notifications from 'react-notify-toast';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-class UmutiHeader extends Component {
+class IpositaHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -121,7 +121,7 @@ class UmutiHeader extends Component {
     }
 };
 
-export default UmutiHeader;
+export default IpositaHeader;
 
 
 
