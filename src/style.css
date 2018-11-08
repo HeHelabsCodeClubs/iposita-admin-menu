@@ -1,0 +1,170 @@
+.common-header {
+    z-index: 9999999;
+    background: #ffffff;
+    position: fixed;
+    width: 100%;
+}
+.top-panel {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.top-panel .comp-logo {
+    height: 4rem;
+    justify-content: left;
+    align-items: center;
+    display: flex;
+}
+.top-panel .comp-logo img {
+    height: 2.5rem;
+    margin: 0 0 0 2rem;
+}
+.top-panel .user-account {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    justify-content: flex-end;
+    padding: 0 2rem 0 0;
+}
+.top-panel .user-account .user-pic {
+    height: 3rem;
+    width: 3rem;
+}
+.top-panel .user-account .user-pic img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #696565;
+}
+.top-panel .user-account .user-name {
+    padding: 0 0 0 1rem;
+}
+.main-menu {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #2A4466;
+}
+.main-menu .nav-container {
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+}
+.main-menu .nav-container ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.main-menu .nav-container ul .nav__menu-item {
+    display: inline-block;
+    position: relative;
+}
+.main-menu .nav-container ul .nav__menu-item:hover {
+    background-color: #415E84;
+}
+.main-menu .nav-container ul .nav__menu-item:hover .nav__submenu {
+    display: block;
+    height: auto;
+}
+.main-menu .nav-container ul .nav__menu-item .main-menu__item-a {
+    cursor: pointer;
+    color: #ffffff;
+    font-family: "Gotham XLight";
+    display: flex;
+    height: 3rem;
+    align-items: center;
+    padding: 0 2.5rem;
+}
+.main-menu .nav-container ul .nav__menu-item .main-menu__item-a.active {
+    background: #415E84;
+    font-family: "Gotham Book";
+}
+.main-menu .nav-container ul .nav__menu-item .main-menu__item-a.active .icon-icon_up-arrow-small:before {
+    color: #ffffff;
+}
+.main-menu .nav-container ul .nav__menu-item .main-menu__item-a.active .icon-icon_down-arrow-small:before {
+    color: #ffffff;
+}
+.main-menu .nav-container ul .nav__menu-item .main-menu__item-a:hover {
+    background: #415E84;
+    font-family: "Gotham Book";
+}
+.main-menu .nav-container ul .nav__menu-item .main-menu__item-a:hover .icon-icon_up-arrow-small:before {
+    color: #ffffff;
+}
+.main-menu .nav-container ul .nav__menu-item .main-menu__item-a:hover .icon-icon_down-arrow-small:before {
+    color: #ffffff;
+}
+.main-menu .nav-container ul .nav__menu-item .main-menu__item-a .icon-icon_up-arrow-small:before {
+    color: #415E84;
+    font-size: 0.5rem !important;
+    margin: 0 0 0 1rem;
+}
+.main-menu .nav-container ul .nav__menu-item .main-menu__item-a .icon-icon_down-arrow-small:before {
+    color: #415E84;
+    font-size: 0.5rem !important;
+    margin: 0 0 0 1rem;
+}
+.main-menu .nav__submenu {
+    position: absolute;
+    background-color: #415E84;
+    width: 100%;
+    height: 1rem;
+    z-index: 99999999999 !important;
+    box-shadow: -1px 8px 20px #cccccc;
+    translate: 0.3s;
+}
+.nav__submenu-item .sub-menu__item-a {
+    cursor: pointer;
+    color: #ffffff;
+    display: flex;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-top: 0.001rem solid #EBEBEB;
+}
+.nav__submenu-item .sub-menu__item-a.active {
+    background: #2A4466;
+}
+.nav__submenu-item .sub-menu__item-a:hover {
+    background: #2A4466;
+}
+.nav__submenu-item:hover {
+    background: #2A4466;
+}
+.main-menu .hamburger-closer {
+    display: none;
+}
+.main-menu button.navbar-toggler {
+    display: none;
+}
+      
+.navbar-toggler-icon{
+    font-size: 1rem;
+}
+.barBtn{
+    text-align: center;
+    margin: 0.2rem auto;
+    background: transparent;
+    color: #ffffff;
+}
+.barBtn:hover{
+    text-align: center;
+    margin: 0.2rem auto;
+    background: #415E84;
+    border-radius: 0 !important;
+}
+
+@media(max-width: 688px) {
+    .main-menu button.navbar-toggler {
+        display: block;
+    }
+    .main-menu .hamburger-closer {
+        display: none;
+    }
+    .main-menu .nav-container {
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+    }
+}
