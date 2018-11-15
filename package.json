@@ -1,6 +1,6 @@
 {
   "name": "iposita-admin-menu",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "\"a component to render iposita admin menu\"",
   "main": "dist/index.js",
   "scripts": {
