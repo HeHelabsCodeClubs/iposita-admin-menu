@@ -49,7 +49,7 @@ class IpositaHeader extends Component {
                 if (name !== 'customers') {
                     viewsList.push(<li className="nav__menu-item">
                     <Link to={`/${name}`} className='main-menu__item-a' key={name}>
-                        {label.toUpperCase()}
+                        {label}
                     </Link>
                     </li>);
                 } else if (name === 'customers') {
@@ -58,7 +58,7 @@ class IpositaHeader extends Component {
                             <div 
                             onMouseEnter={this.customerHandleHover} 
                             className='main-menu__item-a'>
-                            {viewsData[i].label.toUpperCase()}
+                            {viewsData[i].label}
                             <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
                             </div>
                             { this.state.showCustomerMenu && 
