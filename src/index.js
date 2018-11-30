@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import isEmpty from 'lodash.isempty';
 import Notifications from 'react-notify-toast';
 import { Link } from 'react-router-dom';
 import './style.css';
@@ -16,6 +17,7 @@ class IpositaHeader extends Component {
     this.handleHamburgerIconClick = this.handleHamburgerIconClick.bind(this);
     this.customerHandleHover = this.customerHandleHover.bind(this);
     this.customerHandleLeave = this.customerHandleLeave.bind(this);
+    this.renderViews = this.renderViews.bind(this);
     };
 
     handleHamburgerIconClick(e) {
@@ -39,10 +41,53 @@ class IpositaHeader extends Component {
         this.setState({ showCustomerMenu: false });
     };
 
+    renderViews(viewsData) {
+        if (!isEmpty(viewsData)) {
+            const viewsList = [];
+            for(let i = 0; i < viewsData.length; i++) {
+                const { name, label } = viewsData[i];
+                if (name !== 'customers') {
+                    viewsList.push(<li className="nav__menu-item">
+                    <Link to={`/${name}`} className='main-menu__item-a' key={name}>
+                        {label.toUpperCase()}
+                    </Link>
+                    </li>);
+                } else if (name === 'customers') {
+                    viewsList.push(
+                        <li className="nav__menu-item" onMouseLeave={this.customerHandleLeave} key={name}>
+                            <div 
+                            onMouseEnter={this.customerHandleHover} 
+                            className='main-menu__item-a'>
+                            {viewsData[i].label.toUpperCase()}
+                            <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
+                            </div>
+                            { this.state.showCustomerMenu && 
+                                <ul className="nav__submenu">
+                                    <li className="nav__submenu-item ">
+                                        <Link to={`/${name}`} className={this.props.view === 'customers' ? 'sub-menu__item-a active' : 'sub-menu__item-a'}>All customers</Link>
+                                    </li>
+                                    <li className="nav__submenu-item ">
+                                        <Link to={`/${name}/create/details`} className={this.props.view === 'customercreate' ? 'sub-menu__item-a active' : 'sub-menu__item-a'}>Add Customer</Link>
+                                    </li>
+                                </ul>
+                            }
+                        </li>
+                    );
+                }
+            }
+            return (
+                <ul className="nav__menu">
+                    {viewsList}
+                </ul>
+            );
+        }
+        return <div>Loading...</div>
+    }
+
     render() {
-        const borderClass = this.props.hasBorder ? ' dashed-border' : '';
-        const backgroundColorClass = this.props.hasWhiteBackground ? 'white-background' : '';
-        const { children } = this.props;
+        //const borderClass = this.props.hasBorder ? ' dashed-border' : '';
+        //const backgroundColorClass = this.props.hasWhiteBackground ? 'white-background' : '';
+        const { children, viewData } = this.props;
         const { collapseStatus, userData, clientInfoData } = this.state;
         const collapseClasses = collapseStatus === 'closed' ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
         return(
@@ -74,10 +119,9 @@ class IpositaHeader extends Component {
                         <span className="not-close icon-icon_close"></span>
                         </a>
                         <nav className="nav nav-container">
-                            <ul className="nav__menu">
-                                <li className="nav__menu-item">
-                                    <Link to="/dashboard" className={this.props.view === 'dashboard' ? 'main-menu__item-a active' : 'main-menu__item-a'}>Dashboard</Link>
-                                </li>
+                            {this.renderViews(viewData)}
+                            {/* <ul className="nav__menu">
+                                
                                 <li className="nav__menu-item">
                                     <Link to="/orders" className={this.props.view === 'orders' ? 'main-menu__item-a active' : 'main-menu__item-a'}>Requests</Link>
                                 </li>
@@ -112,7 +156,7 @@ class IpositaHeader extends Component {
                                 <li className="nav__menu-item">
                                     <Link to="/users" className={this.props.view === 'users' ? 'main-menu__item-a active' : 'main-menu__item-a'}>Users</Link>
                                 </li>
-                            </ul>
+                            </ul> */}
                         </nav>
                     </div>
                 </div>   
