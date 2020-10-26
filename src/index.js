@@ -9,7 +9,7 @@ class IpositaHeader extends Component {
         super(props);
         this.state = {
             collapseStatus: 'closed',
-            showOrderMenu: false,
+            showAbundanceMenu: false,
             showCustomerMenu: false,
             showConfigMenu: false,
             userData: {}
@@ -17,6 +17,8 @@ class IpositaHeader extends Component {
     this.handleHamburgerIconClick = this.handleHamburgerIconClick.bind(this);
     this.customerHandleHover = this.customerHandleHover.bind(this);
     this.customerHandleLeave = this.customerHandleLeave.bind(this);
+    this.abundanceHandleHover = this.abundanceHandleHover.bind(this);
+    this.abundanceHandleLeave = this.abundanceHandleLeave.bind(this);
     this.renderViews = this.renderViews.bind(this);
     };
 
@@ -41,7 +43,15 @@ class IpositaHeader extends Component {
         this.setState({ showCustomerMenu: false });
     };
 
-    renderViews(viewsData) {
+    abundanceHandleHover () {
+        this.setState({ showAbundanceMenu: true });
+    };
+      
+    abundanceHandleLeave () {
+        this.setState({ showAbundanceMenu: false });
+    };
+
+    renderViews(viewsData, clientData) {
         if (!isEmpty(viewsData)) {
             const viewsList = [];
             for(let i = 0; i < viewsData.length; i++) {
@@ -73,7 +83,32 @@ class IpositaHeader extends Component {
                             }
                         </li>
                     );
-                }
+                } 
+            }
+            if (clientData.admin_site === "https://dmmhehe.shypt.hehe.rw") {
+                viewsList.push(
+                    <li className="nav__menu-item" onMouseLeave={this.abundanceHandleLeave} key='abundance'>
+                        <div 
+                            onMouseEnter={this.abundanceHandleHover} 
+                            className='main-menu__item-a'>
+                            Abundance
+                            <span className={this.state.showAbundanceMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
+                        </div>
+                        { this.state.showAbundanceMenu && 
+                            <ul className="nav__submenu">
+                                <li className="nav__submenu-item" key={'menu_one'}>
+                                    <Link to={`/abundance/sourcing`} className={this.props.view === 'abundancesourcing' ? 'sub-menu__item-a active' : 'sub-menu__item-a'}>Sourcing</Link>
+                                </li>
+                                <li className="nav__submenu-item" key={'menu_two'}>
+                                    <Link to={`/abundance/shopping-lists`} className={this.props.view === 'abundanceshoppinglists' ? 'sub-menu__item-a active' : 'sub-menu__item-a'}>Shopping Lists</Link>
+                                </li>
+                                <li className="nav__submenu-item" key={'menu_three'}>
+                                    <Link to={`/members`} className={this.props.view === 'abundancemembers' ? 'sub-menu__item-a active' : 'sub-menu__item-a'}>Members</Link>
+                                </li>
+                            </ul>
+                        }
+                    </li>
+                );
             }
             return (
                 <ul className="nav__menu">
@@ -87,7 +122,7 @@ class IpositaHeader extends Component {
     render() {
         //const borderClass = this.props.hasBorder ? ' dashed-border' : '';
         //const backgroundColorClass = this.props.hasWhiteBackground ? 'white-background' : '';
-        const { children, viewData } = this.props;
+        const { children, viewData, clientData } = this.props;
         const { collapseStatus, userData, clientInfoData } = this.state;
         const collapseClasses = collapseStatus === 'closed' ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
         return(
@@ -119,7 +154,7 @@ class IpositaHeader extends Component {
                         <span className="not-close icon-icon_close"></span>
                         </a>
                         <nav className="nav nav-container">
-                            {this.renderViews(viewData)}
+                            {this.renderViews(viewData, clientData)}
                         </nav>
                     </div>
                 </div>   
